@@ -1,0 +1,84 @@
+Kita ingin menggunakan informasi kedua gambar untuk mengidentifikasi obyek-obyek tersebut.
+Langkah pertama kedua gambar harus bisa dihimpitkan persis sama. Caranya kita siapkan pasangan
+titik kontrol dari kedua gambar (titik control yang dipakai biasanya percabangan jalan, Monas,
+Semanggi, Danau Sunter dll). Untuk lebih mudahnya, gambar yang pertama akan dipetakan pada
+sistem koordinat gambar kedua. Dalam bentuk yang sudah dimodelkan secara matematis dari masalah
+nyata. Diketahui fungsi yang memetakan kedua gambar yang dimaksud, (u, v) ke (x, y) dengan aturan
+sebagai berikut:
+
+x = au + bv + c
+y = bu + av + d
+
+untuk menghitung koefisien (a, b, c, d) dipergunakan 5 titik kontrol
+(x, y)  (u, v)
+(3, 5)  (10, 15)
+(7, 10)  (15, 18)
+(0, 5)  (5, 10)
+(4, 1)  (8, 5)
+(2, 3)  (10, 8)
+
+Dengan menggunakan titik-titik kontrol tersebut, kita dapat meembuat sistem persamaan linear sebagai berikut:
+1. (3, 5)  (10, 15)
+10a + 15b + c = 3 ... (1)
+15a + 10b + d = 5 ... (2)
+
+2. (7, 10)  (15, 18)
+15a + 18b + c = 7 ... (3)
+18a + 15b + d = 10 ... (4)
+
+3. (0, 5)  (5, 10)
+5a + 10b + c = 0 ... (5)
+10a + 5b + d = 5 ... (6)
+
+4. (4, 1)  (8, 5)
+8a + 5b + c = 4 ... (7)
+5a + 8b + d = 1 ... (8)
+
+5. (2, 3)  (10, 8)
+10a + 8b + c = 2 ... (9)
+8a + 10b + d = 3 ... (10)
+
+Ubah persamaan di atas menjadi bentuk matriks koefisien dan matriks konstanta
+
+matriks koefisien:
+10 15 1 0
+15 10 0 1
+15 18 1 0
+18 15 0 1
+5 10 1 0
+10 5 0 1
+8 5 1 0
+5 8 0 1
+10 8 1 0
+8 10 0 1
+
+matriks konstanta:
+3
+5
+7
+10
+0
+5
+4
+1
+2
+3
+
+Persamaan matriks tersebut dapat kita selesaikan dengan metode penyelesaian kuadrat terkecil (least square method).
+Sehingga didapatkan solusi:
+a = 0.6183940637065632
+b = -0.026876206563705818
+c = -2.4355694980694977
+d = -1.8680019305019222
+
+Dengan demikian, fungsi yang memetakan kedua gambar tersebut adalah:
+x = 0.6183940637065632u - 0.026876206563705818v - 2.4355694980694977
+y = -0.026876206563705818u + 0.6183940637065632v - 1.8680019305019222
+
+Sehingga jika Tugu Monas yang berada pada titik (3, 4) pada gambar pertama, maka kita dapat petakan
+titik tersebut pada gambar kedua dengan menggunakan fungsi di atas. Dengan demikian, titik Tugu Monas
+x = 0.6183940637065632(3) - 0.026876206563705818(4) - 2.4355694980694977
+= -0.687892133204631372
+
+y = -0.026876206563705818(3) + 0.6183940637065632(4) - 1.8680019305019222
+= 0.524945704633213146
